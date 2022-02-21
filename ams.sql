@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 13, 2025 at 07:04 AM
+-- Generation Time: Mar 29, 2025 at 03:28 AM
 -- Server version: 10.4.33-MariaDB-log
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `ams`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `student_name` varchar(255) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
+  `last_seen_location` text NOT NULL,
+  `date` date NOT NULL,
+  `grade_level` enum('11','12') NOT NULL,
+  `strand` enum('STEM','HUMSS','ABM','HE','ICT','EPAS','SMAW') NOT NULL,
+  `section` varchar(100) NOT NULL,
+  `item_photo` varchar(255) DEFAULT NULL,
+  `status` enum('Pending','Resolved') DEFAULT 'Pending',
+  `type` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -51,8 +73,8 @@ CREATE TABLE `tblbranch` (
 --
 
 INSERT INTO `tblbranch` (`branch_id`, `branch_name`, `b_email`, `b_contact_no`, `b_address`, `security_guard_mobile`, `secrataty_mobile`, `moderator_mobile`, `building_make_year`, `building_image`, `b_status`, `builder_company_name`, `builder_company_phone`, `builder_company_address`, `building_rule`, `created_date`) VALUES
-(7, 'Silver Tower', 'mirpur.1@gmail.com', 1717445566, 'F-Block,Mirpur-1,Dhaka-1216', '+880167119889', '+880911909090', '+88090909090', '', 'E9EB1C1F-9D88-0FD8-CE34-92F3421FA31D.jpg', 1, 'Golden Developer Company', '+8850505050', 'Test Address\r\nUK', '<p style=\"text-align:center\"><span style=\"color:#e67e22\"><u><span style=\"font-size:36px\"><span style=\"font-family:Trebuchet MS,Helvetica,sans-serif\"><strong>Love Bird Building Rules</strong></span></span></u></span></p>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">1) Gate Close 10 PM.</span></span></strong></p>\r\n</blockquote>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">2) New commer must be intruduce with guard.</span></span></strong></p>\r\n</blockquote>\r\n', '2016-06-22 09:50:30'),
-(8, 'Da-viruz Systems', 'avinash@mail.com', 1212121212, 'Bolgatanga', '+880167119889', '+880911909090', '+88090909090', '9', '6F7882BD-85CD-8D98-EDCA-1FF65F0BFABA.jpg', 1, 'Da-viruz Systems', '+8850505050', 'test address\r\nGhana', '<p style=\"text-align:center\"><span style=\"color:#e67e22\"><u><span style=\"font-size:36px\"><span style=\"font-family:Trebuchet MS,Helvetica,sans-serif\"><strong>Love Bird Building Rules</strong></span></span></u></span></p>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">1) Gate Close 10 PM.</span></span></strong></p>\r\n</blockquote>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">2) New commer must be intruduce with guard.</span></span></strong></p>\r\n</blockquote>\r\n', '2016-06-22 10:23:45');
+(7, 'Main Building', 'mirpur.1@gmail.com', 1717445566, 'F-Block,Mirpur-1,Dhaka-1216', '+880167119889', '+880911909090', '+88090909090', '', 'E9EB1C1F-9D88-0FD8-CE34-92F3421FA31D.jpg', 1, 'Golden Developer Company', '+8850505050', 'Test Address\r\nUK', '<p style=\"text-align:center\"><span style=\"color:#e67e22\"><u><span style=\"font-size:36px\"><span style=\"font-family:Trebuchet MS,Helvetica,sans-serif\"><strong>Love Bird Building Rules</strong></span></span></u></span></p>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">1) Gate Close 10 PM.</span></span></strong></p>\r\n</blockquote>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">2) New commer must be intruduce with guard.</span></span></strong></p>\r\n</blockquote>\r\n', '2016-06-22 09:50:30'),
+(8, 'Building 2', 'avinash@mail.com', 1212121212, 'Bolgatanga', '+880167119889', '+880911909090', '+88090909090', '9', '6F7882BD-85CD-8D98-EDCA-1FF65F0BFABA.jpg', 1, 'Da-viruz Systems', '+8850505050', 'test address\r\nGhana', '<p style=\"text-align:center\"><span style=\"color:#e67e22\"><u><span style=\"font-size:36px\"><span style=\"font-family:Trebuchet MS,Helvetica,sans-serif\"><strong>Love Bird Building Rules</strong></span></span></u></span></p>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">1) Gate Close 10 PM.</span></span></strong></p>\r\n</blockquote>\r\n\r\n<blockquote>\r\n<p><strong><span style=\"color:#16a085\"><span style=\"font-size:20px\">2) New commer must be intruduce with guard.</span></span></strong></p>\r\n</blockquote>\r\n', '2016-06-22 10:23:45');
 
 -- --------------------------------------------------------
 
@@ -330,7 +352,8 @@ CREATE TABLE `tbl_add_floor` (
 
 INSERT INTO `tbl_add_floor` (`fid`, `floor_no`, `branch_id`, `added_date`) VALUES
 (12, 'First Floor', 8, '2019-08-26 18:56:32'),
-(13, 'Second Floor', 8, '2019-08-27 04:06:26');
+(13, 'Second Floor', 8, '2019-08-27 04:06:26'),
+(14, '1', 7, '2025-03-28 11:08:44');
 
 -- --------------------------------------------------------
 
@@ -493,7 +516,8 @@ CREATE TABLE `tbl_add_owner` (
 --
 
 INSERT INTO `tbl_add_owner` (`ownid`, `o_name`, `o_email`, `o_contact`, `o_pre_address`, `o_per_address`, `o_nid`, `o_password`, `image`, `branch_id`, `created_date`) VALUES
-(19, 'John Peterson', 'john@gmail.com', '+8801679110711', '7790 4th St.\r\nWoodhaven, NY 11421', '8349 Marlborough Dr.\r\nMarlborough, MA 01752', '90909-4343434-1212121', 'MTIzNDU2', 'B616EE89-C1D1-8984-3C2F-2D192CC5699E.png', 8, '2019-08-26 19:02:41');
+(19, 'John Peterson', 'john@gmail.com', '+8801679110711', '7790 4th St.\r\nWoodhaven, NY 11421', '8349 Marlborough Dr.\r\nMarlborough, MA 01752', '90909-4343434-1212121', 'MTIzNDU2', 'B616EE89-C1D1-8984-3C2F-2D192CC5699E.png', 8, '2019-08-26 19:02:41'),
+(20, 'Owner of Building 2', 'seancvpugosa@gmail.com', '639533180925', 'Address', 'Address', '123', 'c2VhbmN2cHVnb3NhQGdtYWlsLmNvbQ==', '', 7, '2025-03-28 11:14:06');
 
 -- --------------------------------------------------------
 
@@ -512,7 +536,8 @@ CREATE TABLE `tbl_add_owner_unit_relation` (
 
 INSERT INTO `tbl_add_owner_unit_relation` (`owner_id`, `unit_id`) VALUES
 (19, 30),
-(19, 32);
+(19, 32),
+(20, 34);
 
 -- --------------------------------------------------------
 
@@ -571,7 +596,8 @@ CREATE TABLE `tbl_add_rent` (
 --
 
 INSERT INTO `tbl_add_rent` (`rid`, `r_name`, `r_email`, `r_contact`, `r_address`, `r_nid`, `r_floor_no`, `r_unit_no`, `r_advance`, `r_rent_pm`, `r_date`, `r_gone_date`, `r_password`, `image`, `r_status`, `r_month`, `r_year`, `branch_id`, `added_date`) VALUES
-(20, 'Jim Cary', 'jimcary@yahoo.com', '+8801679110711', '63 Creek St.\r\nEastpointe, MI 48021', '232323-565656-212121', '12', '30', 10000.00, 10000.00, '27/08/2019', '', 'MTIzNDU2', 'C7A2F0A4-1DCC-E7F1-8D54-14F507D8CA7E.jpg', 1, 9, 11, 8, '2019-08-26 19:33:04');
+(20, 'Jim Cary', 'jimcary@yahoo.com', '+8801679110711', '63 Creek St.\r\nEastpointe, MI 48021', '232323-565656-212121', '12', '30', 10000.00, 10000.00, '27/08/2019', '', 'MTIzNDU2', 'C7A2F0A4-1DCC-E7F1-8D54-14F507D8CA7E.jpg', 1, 9, 11, 8, '2019-08-26 19:33:04'),
+(21, 'Sean', 'seancvpugosa@gmail.com', '639533180925', 'Address', '123', '14', '34', 500.00, 500.00, '28/03/2025', NULL, 'c2VhbmN2cHVnb3NhQGdtYWlsLmNvbQ==', '', 1, 1, 13, 7, '2025-03-28 11:09:44');
 
 -- --------------------------------------------------------
 
@@ -596,7 +622,8 @@ INSERT INTO `tbl_add_unit` (`uid`, `floor_no`, `unit_no`, `branch_id`, `status`,
 (30, '12', 'Flat 1A', 8, 1, '2019-08-26 18:56:56'),
 (31, '12', 'Flat 1B', 8, 0, '2019-08-26 18:57:09'),
 (32, '13', 'Flat 2A', 8, 0, '2019-08-27 04:07:08'),
-(33, '13', 'Flat 2B', 8, 0, '2019-08-27 04:07:35');
+(33, '13', 'Flat 2B', 8, 0, '2019-08-27 04:07:35'),
+(34, '14', '100', 7, 1, '2025-03-28 11:08:56');
 
 -- --------------------------------------------------------
 
@@ -835,7 +862,7 @@ CREATE TABLE `tbl_settings` (
 --
 
 INSERT INTO `tbl_settings` (`lang_code`, `currency`, `currency_seperator`, `currency_position`, `currency_decimal`, `mail_protocol`, `super_admin_image`, `date_format`, `smtp_hostname`, `smtp_username`, `smtp_password`, `smtp_port`, `smtp_secure`, `cat_username`, `cat_password`, `cat_apikey`, `id`) VALUES
-('English', '₱', '.', 'left', 2, 'mail', 'CA8D0636-E7DD-542A-8775-7CC2DA9C7739.jpg', '', 'smtp.hostinger.com', 'support@tcuregistrarrequest.site', '#228JyiuS', '587', 'tls', '', '', '', 1);
+('English', 'â‚±', ',', 'left', 2, 'mail', 'CA8D0636-E7DD-542A-8775-7CC2DA9C7739.jpg', NULL, 'smtp.hostinger.com', 'support@tcuregistrarrequest.site', '#228JyiuS', '587', 'tls', 'PhilSMS', 'pass', '870|h05YLghELQ8xSwBYKosPFx3w6svYs4EckHpQvsf9', 4);
 
 -- --------------------------------------------------------
 
@@ -869,6 +896,12 @@ INSERT INTO `tbl_visitor` (`vid`, `issue_date`, `name`, `mobile`, `address`, `fl
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tblbranch`
@@ -1073,6 +1106,12 @@ ALTER TABLE `tbl_visitor`
 --
 
 --
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tblbranch`
 --
 ALTER TABLE `tblbranch`
@@ -1142,7 +1181,7 @@ ALTER TABLE `tbl_add_fair`
 -- AUTO_INCREMENT for table `tbl_add_floor`
 --
 ALTER TABLE `tbl_add_floor`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_add_fund`
@@ -1178,7 +1217,7 @@ ALTER TABLE `tbl_add_month_setup`
 -- AUTO_INCREMENT for table `tbl_add_owner`
 --
 ALTER TABLE `tbl_add_owner`
-  MODIFY `ownid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ownid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_add_owner_utility`
@@ -1190,13 +1229,13 @@ ALTER TABLE `tbl_add_owner_utility`
 -- AUTO_INCREMENT for table `tbl_add_rent`
 --
 ALTER TABLE `tbl_add_rent`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_add_unit`
 --
 ALTER TABLE `tbl_add_unit`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tbl_add_utility_bill`
@@ -1244,7 +1283,7 @@ ALTER TABLE `tbl_notice_board`
 -- AUTO_INCREMENT for table `tbl_notification_alert`
 --
 ALTER TABLE `tbl_notification_alert`
-  MODIFY `notification_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_owner_notice_board`
@@ -1256,7 +1295,7 @@ ALTER TABLE `tbl_owner_notice_board`
 -- AUTO_INCREMENT for table `tbl_settings`
 --
 ALTER TABLE `tbl_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_visitor`
