@@ -3,9 +3,9 @@
 //English Package
 //copyright: sakosys.com
 
-$_data['application_title'] 			= "SAKO Apartment Management System";
-$_data['application_heading_1'] 		= "SAKO";
-$_data['application_heading_2'] 		= "Apartment Management System";
+$_data['application_title'] 			= "Tenant Access and Management System: AI Face Recognition and Automated Payment Reminders";
+$_data['application_heading_1'] 		= "Tenant Access and Management System<br>";
+$_data['application_heading_2'] 		= "AI Face Recognition and Automated Payment Reminders Apartment Management System";
 $_data['wrong_login_msg'] 				= "Wrong email or password.";
 $_data['enter_login_details'] 			= "Enter Login Details";
 
