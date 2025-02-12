@@ -64,6 +64,8 @@ if(isset($_POST['username']) && $_POST['username'] != '' && isset($_POST['passwo
 	//super admin
 	if($_POST['ddlLoginType'] == '5'){
 		$sql = mysqli_query($link, "SELECT * FROM tblsuper_admin WHERE email = '".$user_name."' and password = '".$password."'");
+	
+		
 	}
 	if(!empty($sql)){
 		if($row = mysqli_fetch_assoc($sql)){

@@ -10,12 +10,13 @@ $(document).ready(function() {
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
+				var baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2)) + "/";
 				if(data == '-99'){
-					window.location = $("#web_url").val() + 'logout.php';
+					window.location = baseUrl + 'logout.php';
 				}
 				else{
 					alert('Update Profile Information Successfully');
-					window.location = $("#web_url").val() + 'logout.php';
+					window.location = baseUrl + 'logout.php';
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) 

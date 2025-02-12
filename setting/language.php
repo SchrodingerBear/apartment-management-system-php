@@ -2,8 +2,8 @@
 include('../header.php');
 include(ROOT_PATH.'language/'.$lang_code_global.'/lang_language.php');
 if(!isset($_SESSION['objLogin'])){
-	header("Location: " . WEB_URL . "logout.php");
-	die();
+	// header("Location: " . WEB_URL . "logout.php");
+	// die();
 }
 if(isset($_SESSION['login_type']) && ((int)$_SESSION['login_type'] != 5)){
 	header("Location: ".WEB_URL."logout.php");
