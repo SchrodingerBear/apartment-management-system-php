@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 19, 2025 at 12:09 PM
+-- Generation Time: Feb 13, 2025 at 07:04 AM
 -- Server version: 10.4.33-MariaDB-log
--- PHP Version: 7.4.33
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,7 +74,7 @@ CREATE TABLE `tblsuper_admin` (
 --
 
 INSERT INTO `tblsuper_admin` (`user_id`, `name`, `email`, `contact`, `password`, `added_date`) VALUES
-(1, 'Alexander Pierce', 'admin@gmail.com', '+8801679110711', 'YWRtaW5AZ21haWwuY29t', '2015-06-29 06:15:29');
+(1, 'Alexander Pierce', 'superadmin@gmail.com', '+8801679110711', 'c3VwZXJhZG1pbkBnbWFpbC5jb20=', '2015-06-29 06:15:29');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE `tbl_add_admin` (
 --
 
 INSERT INTO `tbl_add_admin` (`aid`, `name`, `email`, `contact`, `password`, `image`, `branch_id`, `added_date`) VALUES
-(7, 'Tony', 'tony@yahoo.com', '+8801679110711', 'MTIzNDU2', 'B7962E98-0550-407D-01A7-3C088DCCD2EF.jpg', 8, '2019-08-27 04:45:27');
+(7, 'Tony', 'admin@gmail.com', '+8801679110711', 'YWRtaW5AZ21haWwuY29t', 'B7962E98-0550-407D-01A7-3C088DCCD2EF.jpg', 8, '2019-08-27 04:45:27');
 
 -- --------------------------------------------------------
 
