@@ -145,21 +145,37 @@ class ams_helper {
 	 * @return message Response
 	 */
 	public function sendSMS($localization, $phone_no, $message) {
-		if(!empty($phone_no) && !empty($localization['cat_apikey'])){
-			$username = $localization['cat_username'];
-			$password = $localization['cat_password'];
-			$apiID = $localization['cat_apikey'];
-			$params = array('apiToken' => $apiID);
-			$clickatell = new Clickatell($params);
-			$response = $clickatell->sendMessage(['to' => [$phone_no],'content' => $message]);
-			foreach ($response as $message) { 
-				 return $message[0];
-				 break;
-			}
-		} else {
-			return -1;
-		}
+			$apiToken = '870|h05YLghELQ8xSwBYKosPFx3w6svYs4EckHpQvsf9';
+			$url = 'https://app.philsms.com/api/v3/sms/send';
+	
+			$data = [
+				'recipient' => $phone_no,
+				'sender_id' => 'PhilSMS',
+				'type' => 'plain',
+				'message' => $message
+			];
+	
+			$headers = [
+				"Authorization: Bearer {$apiToken}",
+				"Content-Type: application/json",
+				"Accept: application/json"
+			];
+	
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			$response = curl_exec($ch);
+			$error = curl_error($ch);
+			curl_close($ch);
+	
+			 
+	
+			return json_decode($response, true);
 	}
+	
 	
 	/**
 	 * PHP Mailer

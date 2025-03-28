@@ -64,8 +64,6 @@ if(isset($_POST['username']) && $_POST['username'] != '' && isset($_POST['passwo
 	//super admin
 	if($_POST['ddlLoginType'] == '5'){
 		$sql = mysqli_query($link, "SELECT * FROM tblsuper_admin WHERE email = '".$user_name."' and password = '".$password."'");
-	
-		
 	}
 	if(!empty($sql)){
 		if($row = mysqli_fetch_assoc($sql)){
@@ -81,6 +79,7 @@ if(isset($_POST['username']) && $_POST['username'] != '' && isset($_POST['passwo
 				);
 				$arr = array_merge($arr, $branch_list);
 				$_SESSION['objLogin'] = $arr;
+				
 			}
 			else{
 				$_SESSION['objLogin'] = $row;
@@ -90,8 +89,12 @@ if(isset($_POST['username']) && $_POST['username'] != '' && isset($_POST['passwo
 			$link = NULL;
 			
 			$_SESSION['login_type'] = $_POST['ddlLoginType'];
-			if($_POST['ddlLoginType'] == '1' || $_POST['ddlLoginType'] == '5'){
+			if($_POST['ddlLoginType'] == '1'){
 				header("Location: dashboard.php");
+				die();
+			}
+			else if($_POST['ddlLoginType'] == '5'){
+				header("Location: http://127.0.0.1:5000/?account_type=superadmin");
 				die();
 			}
 			else if($_POST['ddlLoginType'] == '2'){
