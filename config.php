@@ -1,7 +1,7 @@
 <?php
 const CURRENCY = '₱';
-const WEB_URL = 'http://localhost/ams/';
-const ROOT_PATH = 'D:\laragon\www\ams/';
+const WEB_URL = 'https://tenantaccess.site/';
+const ROOT_PATH = '/home/u467106394/domains/tenantaccess.site/public_html/';
 
 const DB_HOSTNAME = 'localhost';
 const DB_USERNAME = 'u467106394_tenantaccess';
