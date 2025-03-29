@@ -25,7 +25,7 @@ include(ROOT_PATH.'language/'.$lang_code_global.'/lang_common.php');
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sako Apartment Management System</title>
+<title>Tenant Access and Management System: AI Face Recognition and Automated Payment Reminders</title>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <!-- Bootstrap 3.3.4 -->
 <link href="<?php echo WEB_URL; ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
